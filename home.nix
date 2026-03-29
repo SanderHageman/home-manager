@@ -25,14 +25,12 @@
 
   # load all the nix files in ./pgms into the programs Attrset
   programs =
+    with builtins;
     let
-      pgmsDir = ./pgms;
-      nixFiles = lib.filterAttrs (n: _: lib.hasSuffix ".nix" n) (builtins.readDir pgmsDir);
-      f =
-        acc: n: _:
-        acc // import (pgmsDir + /${n}) { inherit pkgs; };
+      nixFiles = d: map (f: /${d}/${f}) (filter (lib.hasSuffix ".nix") (attrNames (readDir d)));
+      importPath = path: import path { inherit pkgs; };
     in
-    lib.foldlAttrs f { } nixFiles;
+    foldl' (acc: path: acc // importPath path) { } (nixFiles ./pgms);
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
 }
