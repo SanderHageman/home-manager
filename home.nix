@@ -6,8 +6,9 @@
 }:
 # The shared config
 {
-  # When porting to a new pc; create the `.username` file
-  home.username = builtins.readFile ./.username;
+  # Create a nix file with just the username of the account to install it on:
+  # echo \"$USER\" > ~/.config/home-manager/.username.nix
+  home.username = (import ./.username.nix);
   home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
 
   targets.genericLinux.enable = true;

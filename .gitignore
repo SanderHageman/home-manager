@@ -6,4 +6,4 @@ result-*
 .direnv
 
 # Ignore the username so the config can be shared
-.username
+.username.nix
