@@ -4,19 +4,15 @@
   pkgs,
   ...
 }:
-
+# The shared config
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = lib.mkDefault "snd";
+  # When porting to a new pc; create the `.username` file
+  home.username = builtins.readFile ./.username;
   home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
 
   targets.genericLinux.enable = true;
 
-  # The home.packages option allows you to install Nix packages into your ownq
-  # environment.
   home.packages = with pkgs; [
-    # du + rust = dust. Like du but more intuitive.
     dust
     fastfetch
     ripgrep
