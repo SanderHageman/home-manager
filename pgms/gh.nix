@@ -1,7 +1,9 @@
 { ... }:
 {
-  enable = true;
-  gitCredentialHelper = {
+  programs.gh = {
     enable = true;
+    gitCredentialHelper = {
+      enable = true;
+    };
   };
 }

@@ -2,91 +2,92 @@
   pkgs,
   ...
 }:
-
 {
-  enable = true;
-  loginShellInit = ''
-    # Settings for done plugin:
-    set -U __done_min_cmd_duration 10000
-    set -U __done_notification_urgency_level low
-  '';
-
-  plugins = with pkgs; [
-    {
-      name = "autopair";
-      src = fishPlugins.autopair.src;
-    }
-    {
-      name = "bang-bang";
-      src = fishPlugins.bang-bang.src;
-    }
-    {
-      name = "done";
-      src = fishPlugins.done.src;
-    }
-    {
-      name = "fish-you-should-use";
-      src = fishPlugins.fish-you-should-use.src;
-    }
-    {
-      name = "git-abbr";
-      src = fishPlugins.git-abbr.src;
-    }
-  ];
-
-  functions = {
-    fish_greeting = "fastfetch";
-    history = "builtin history --show-time='%F %T '";
-    backup = "cp $argv $argv.bak";
-
-    remaster = "git fetch && git rebase origin/master -i --autosquash";
-
-    run-jar = ''
-      set -lx JDK_JAVA_OPTIONS \
-          '-Dawt.useSystemAAFontSettings=on' \
-          '-Dswing.aatext=true' \
-          '-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-
-      set -lx _JAVA_AWT_WM_NONREPARENTING '1'
-      set -lx AWT_TOOLKIT 'MToolkit'
-
-      set java_version jdk11
-
-      nix-shell -p $java_version --run "java -jar $argv" > /tmp/java-daemon.log 2>&1 &
-      jobs
+  programs.fish = {
+    enable = true;
+    loginShellInit = ''
+      # Settings for done plugin:
+      set -U __done_min_cmd_duration 10000
+      set -U __done_notification_urgency_level low
     '';
-  };
 
-  shellAliases = {
-    ## Useful aliases
-    # Replace ls with eza
-    ls = "eza -al --color=always --group-directories-first --icons"; # preferred listing
-    la = "eza -a --color=always --group-directories-first --icons"; # all files and dirs
-    ll = "eza -l --color=always --group-directories-first --icons"; # long format
-    lt = "eza -aT --color=always --group-directories-first --icons"; # tree listing
-    "l." = "eza -a | grep -e '^\.'"; # show only dotfiles
+    plugins = with pkgs; [
+      {
+        name = "autopair";
+        src = fishPlugins.autopair.src;
+      }
+      {
+        name = "bang-bang";
+        src = fishPlugins.bang-bang.src;
+      }
+      {
+        name = "done";
+        src = fishPlugins.done.src;
+      }
+      {
+        name = "fish-you-should-use";
+        src = fishPlugins.fish-you-should-use.src;
+      }
+      {
+        name = "git-abbr";
+        src = fishPlugins.git-abbr.src;
+      }
+    ];
 
-    # Common use
-    tarnow = "tar -acf ";
-    untar = "tar -zxvf ";
-    wget = "wget -c ";
-    psmem = "ps auxf | sort -nr -k 4";
-    psmem10 = "ps auxf | sort -nr -k 4 | head -10";
-    ".." = "cd ..";
-    "..." = "cd ../..";
-    "...." = "cd ../../..";
-    "....." = "cd ../../../..";
-    "......" = "cd ../../../../..";
-    dir = "dir --color=auto";
-    vdir = "vdir --color=auto";
-    grep = "grep --color=auto";
-    fgrep = "fgrep --color=auto";
-    egrep = "egrep --color=auto";
-    hw = "hwinfo --short"; # Hardware Info
-    big = "expac -H M '%m\t%n' | sort -h | nl"; # Sort installed packages according to size in MB
-    cat = "bat";
+    functions = {
+      fish_greeting = "fastfetch";
+      history = "builtin history --show-time='%F %T '";
+      backup = "cp $argv $argv.bak";
 
-    # Get the error messages from journalctl
-    jctl = "journalctl -p 3 -xb";
+      remaster = "git fetch && git rebase origin/master -i --autosquash";
+
+      run-jar = ''
+        set -lx JDK_JAVA_OPTIONS \
+            '-Dawt.useSystemAAFontSettings=on' \
+            '-Dswing.aatext=true' \
+            '-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
+        set -lx _JAVA_AWT_WM_NONREPARENTING '1'
+        set -lx AWT_TOOLKIT 'MToolkit'
+
+        set java_version jdk11
+
+        nix-shell -p $java_version --run "java -jar $argv" > /tmp/java-daemon.log 2>&1 &
+        jobs
+      '';
+    };
+
+    shellAliases = {
+      ## Useful aliases
+      # Replace ls with eza
+      ls = "eza -al --color=always --group-directories-first --icons"; # preferred listing
+      la = "eza -a --color=always --group-directories-first --icons"; # all files and dirs
+      ll = "eza -l --color=always --group-directories-first --icons"; # long format
+      lt = "eza -aT --color=always --group-directories-first --icons"; # tree listing
+      "l." = "eza -a | grep -e '^\.'"; # show only dotfiles
+
+      # Common use
+      tarnow = "tar -acf ";
+      untar = "tar -zxvf ";
+      wget = "wget -c ";
+      psmem = "ps auxf | sort -nr -k 4";
+      psmem10 = "ps auxf | sort -nr -k 4 | head -10";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+      "....." = "cd ../../../..";
+      "......" = "cd ../../../../..";
+      dir = "dir --color=auto";
+      vdir = "vdir --color=auto";
+      grep = "grep --color=auto";
+      fgrep = "fgrep --color=auto";
+      egrep = "egrep --color=auto";
+      hw = "hwinfo --short"; # Hardware Info
+      big = "expac -H M '%m\t%n' | sort -h | nl"; # Sort installed packages according to size in MB
+      cat = "bat";
+
+      # Get the error messages from journalctl
+      jctl = "journalctl -p 3 -xb";
+    };
   };
 }

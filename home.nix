@@ -23,15 +23,18 @@
     tealdeer
   ];
 
-  programs = {
-    fish = (import ./pgms/fish.nix { inherit pkgs; });
-    gh = (import ./pgms/gh.nix { inherit pkgs; });
-    git = (import ./pgms/git.nix { inherit pkgs; });
-    kitty = (import ./pgms/kitty.nix { inherit pkgs; });
-    starship = (import ./pgms/starship.nix { inherit pkgs; });
-  };
+  # load all the nix files in ./pgms into the programs Attrset
+  programs =
+    let
+      pgmsDir = ./pgms;
+      nixFiles = lib.filterAttrs (n: v: v == "regular" && lib.strings.hasSuffix ".nix" n) (
+        builtins.readDir pgmsDir
+      );
+      f =
+        acc: n: _:
+        acc // (import (pgmsDir + /${n}) { inherit pkgs; }).programs;
+    in
+    lib.foldlAttrs f { } nixFiles;
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
   home.stateVersion = "25.11"; # Please read the comment before changing.
 }
