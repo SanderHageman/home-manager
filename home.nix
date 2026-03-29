@@ -27,9 +27,7 @@
   programs =
     let
       pgmsDir = ./pgms;
-      nixFiles = lib.filterAttrs (n: v: v == "regular" && lib.strings.hasSuffix ".nix" n) (
-        builtins.readDir pgmsDir
-      );
+      nixFiles = lib.filterAttrs (n: _: lib.hasSuffix ".nix" n) (builtins.readDir pgmsDir);
       f =
         acc: n: _:
         acc // (import (pgmsDir + /${n}) { inherit pkgs; }).programs;
