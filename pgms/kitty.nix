@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.kitty = {
+  kitty = {
     enable = true;
     enableGitIntegration = true;
     shellIntegration.enableFishIntegration = true;

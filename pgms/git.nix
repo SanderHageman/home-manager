@@ -1,6 +1,6 @@
 { ... }:
 {
-  programs.git = {
+  git = {
     enable = true;
     settings = {
       user = {

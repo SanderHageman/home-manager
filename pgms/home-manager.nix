@@ -1,7 +1,7 @@
 { ... }:
 {
   # Let Home Manager install and manage itself.
-  programs.home-manager = {
+  home-manager = {
     enable = true;
   };
 }

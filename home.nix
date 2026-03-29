@@ -31,7 +31,7 @@
       nixFiles = lib.filterAttrs (n: _: lib.hasSuffix ".nix" n) (builtins.readDir pgmsDir);
       f =
         acc: n: _:
-        acc // (import (pgmsDir + /${n}) { inherit pkgs; }).programs;
+        acc // import (pgmsDir + /${n}) { inherit pkgs; };
     in
     lib.foldlAttrs f { } nixFiles;
 

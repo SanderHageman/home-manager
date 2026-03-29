@@ -3,7 +3,7 @@
   ...
 }:
 {
-  programs.fish = {
+  fish = {
     enable = true;
     loginShellInit = ''
       # Settings for done plugin:

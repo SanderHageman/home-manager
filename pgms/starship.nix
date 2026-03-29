@@ -1,6 +1,6 @@
 { ... }:
 {
-  programs.starship = {
+  starship = {
     enable = true;
     enableFishIntegration = true;
     enableInteractive = true;
