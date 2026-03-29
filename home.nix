@@ -18,7 +18,6 @@
     fastfetch
     ripgrep
     immich-go
-    direnv
     eza
     bat
     tealdeer
