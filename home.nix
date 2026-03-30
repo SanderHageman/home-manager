@@ -21,6 +21,7 @@
     eza
     bat
     tealdeer
+    helix
   ];
 
   # load all the nix files in ./pgms into the programs Attrset
