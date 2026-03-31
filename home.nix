@@ -19,7 +19,6 @@
     dust
     fastfetch
     ripgrep
-    immich-go
     eza
     bat
     tealdeer
