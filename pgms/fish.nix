@@ -28,10 +28,6 @@
         name = "fish-you-should-use";
         src = fishPlugins.fish-you-should-use.src;
       }
-      {
-        name = "git-abbr";
-        src = fishPlugins.git-abbr.src;
-      }
     ];
 
     functions = {
@@ -58,6 +54,23 @@
     };
 
     shellAliases = {
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
+      gpl = "git pull";
+      gsw = "git switch";
+      gsm = "git switch main";
+      gap = "git add -p";
+
+      gst = "git stash";
+      gsta = "git stash apply";
+      gstp = "git stash pop";
+      gstl = "git stash list";
+
+      gl = "git log --oneline --graph --decorate";
+      glog = "git log --oneline --graph --decorate --all";
+
       ## Useful aliases
       # Replace ls with eza
       ls = "eza -al --color=always --group-directories-first --icons"; # preferred listing
