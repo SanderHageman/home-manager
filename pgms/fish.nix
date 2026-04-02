@@ -60,6 +60,7 @@
       gp = "git push";
       gpl = "git pull";
       gsw = "git switch";
+      gswc = "git switch -c";
       gsm = "git switch (git branch -l main master --format '%(refname:short)')";
       gap = "git add -p";
 
