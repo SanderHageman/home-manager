@@ -57,7 +57,9 @@
       gs = "git status";
       ga = "git add";
       gc = "git commit";
+      gcm = "git commit -m";
       gp = "git push";
+      gd = "git diff";
       gpl = "git pull";
       gsw = "git switch";
       gswc = "git switch -c";

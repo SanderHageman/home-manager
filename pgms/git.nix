@@ -9,4 +9,9 @@
       };
     };
   };
+
+  delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
 }
