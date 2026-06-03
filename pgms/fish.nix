@@ -51,6 +51,16 @@
         nix-shell -p $java_version --run "java -jar $argv" > /tmp/java-daemon.log 2>&1 &
         jobs
       '';
+
+      # git reset hard
+      grh = ''
+        read -l -P "Are you sure you want to reset hard? [y/N] " answer
+        if test "$answer" = "y" -o "$answer" = "Y"
+          git reset --hard
+        else
+          echo "Git reset hard aborted."
+        end
+      '';
     };
 
     shellAliases = {
