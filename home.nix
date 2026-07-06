@@ -22,6 +22,7 @@
     eza
     bat
     tealdeer
+    btop
     # helix
   ];
 
