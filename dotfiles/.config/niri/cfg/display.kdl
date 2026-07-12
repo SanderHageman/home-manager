@@ -1,0 +1,18 @@
+// ────────────── Output Configuration ──────────────
+// You can run `niri msg outputs` to get the correct name for your displays.
+// You will have to remove "/-" and edit it before it takes effect.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+
+output "eDP-1" {
+    mode "2880x1800"
+    scale 1.5
+
+    variable-refresh-rate on-demand=true
+}
+
+output "Xiaomi Corporation Mi Monitor 0000000000000" {
+    mode "3440x1440"
+    // position x=0 y=0
+
+    variable-refresh-rate on-demand=true
+}
