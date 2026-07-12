@@ -84,6 +84,8 @@
       gl = "git log --oneline --graph --decorate";
       glog = "git log --oneline --graph --decorate --all";
 
+      gf = "git fetch --all";
+
       ## Useful aliases
       # Replace ls with eza
       ls = "eza -al --color=always --group-directories-first --icons"; # preferred listing
