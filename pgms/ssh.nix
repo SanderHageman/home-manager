@@ -6,9 +6,45 @@ let
 in {
   ssh = {
     enable = true;
-    extraConfig = ''
-      Host *
-          IdentityAgent ${onePassPath}
-    '';
+
+    enableDefaultConfig = false;
+
+    settings."*" = {
+      # Connection pooling for faster repeated connections
+      ControlMaster = "auto";
+      ControlPath = "~/.ssh/master-%r@%n:%p";
+      ControlPersist = "60";
+
+      # Keep connections alive to prevent timeout issues
+      ServerAliveInterval = 60;
+      ServerAliveCountMax = 3;
+
+      HashKnownHosts = false;
+      UserKnownHostsFile = "~/.ssh/known_hosts";
+
+      # Better performance for high-latency or lossy connections
+      Compression = true;
+
+      # Security: use SSH agent (1Password IdentityAgent defined below)
+      AddKeysToAgent = "confirm";
+
+      # Security: disable agent forwarding by default (enable per-host if needed)
+      ForwardAgent = false;
+
+      IdentityAgent = onePassPath;
+    };
+
+    settings.archer = {
+      HostName = "archer";
+      User = "sander";
+      RequestTTY = "yes";
+      RemoteCommand = "fish";
+    };
+
+    settings.nixcup = {
+      HostName = "hageman.me";
+      RequestTTY = "yes";
+      RemoteCommand = "fish";
+    };
   };
 }
