@@ -28,6 +28,10 @@
         name = "fish-you-should-use";
         src = fishPlugins.fish-you-should-use.src;
       }
+      {
+        name = "plugin-git";
+        src = pkgs.fishPlugins.plugin-git.src;
+      }
     ];
 
     functions = {
@@ -35,7 +39,7 @@
       history = "builtin history --show-time='%F %T '";
       backup = "cp $argv $argv.bak";
 
-      remaster = "git fetch && git rebase origin/master -i --autosquash";
+      remaster = "git fetch origin (__git.default_branch); and git rebase FETCH_HEAD --interactive --autosquash";
 
       run-jar = ''
         set -lx JDK_JAVA_OPTIONS \
@@ -51,40 +55,10 @@
         nix-shell -p $java_version --run "java -jar $argv" > /tmp/java-daemon.log 2>&1 &
         jobs
       '';
-
-      # git reset hard
-      grh = ''
-        read -l -P "Are you sure you want to reset hard? [y/N] " answer
-        if test "$answer" = "y" -o "$answer" = "Y"
-          git reset --hard
-        else
-          echo "Git reset hard aborted."
-        end
-      '';
     };
 
     shellAliases = {
       gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gcm = "git commit -m";
-      gp = "git push";
-      gd = "git diff";
-      gpl = "git pull";
-      gsw = "git switch";
-      gswc = "git switch -c";
-      gsm = "git switch (git branch -l main master --format '%(refname:short)')";
-      gap = "git add -p";
-
-      gst = "git stash";
-      gsta = "git stash apply";
-      gstp = "git stash pop";
-      gstl = "git stash list";
-
-      gl = "git log --oneline --graph --decorate";
-      glog = "git log --oneline --graph --decorate --all";
-
-      gf = "git fetch --all";
 
       ## Useful aliases
       # Replace ls with eza
