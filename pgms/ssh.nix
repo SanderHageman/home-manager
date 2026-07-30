@@ -38,13 +38,13 @@ in {
       HostName = "archer";
       User = "sander";
       RequestTTY = "yes";
-      RemoteCommand = "fish";
+      RemoteCommand = "fish --login";
     };
 
     settings.nixcup = {
       HostName = "hageman.me";
       RequestTTY = "yes";
-      RemoteCommand = "fish";
+      RemoteCommand = "fish --login";
     };
   };
 }
