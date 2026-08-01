@@ -12,10 +12,14 @@
 
   imports = [
     ./.home.nix
+    ./loadpgms.nix
     ./dotfiles.nix
   ];
 
   home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
+  nixpkgs.config.allowUnfree = true;
+
+  services.gnome-keyring.enable = true;
 
   home.packages = with pkgs; [
     dust
@@ -23,19 +27,10 @@
     ripgrep
     eza
     bat
-    tealdeer
     btop
-    # helix
+    seahorse
+    gcr # Provides org.gnome.keyring.SystemPrompter
   ];
-
-  # load all the nix files in ./pgms into the programs Attrset
-  programs =
-    with builtins;
-    let
-      nixFiles = d: map (f: /${d}/${f}) (filter (lib.hasSuffix ".nix") (attrNames (readDir d)));
-      importPath = path: import path { inherit pkgs; inherit config; };
-    in
-    foldl' (acc: path: acc // importPath path) { } (nixFiles ./pgms);
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
 }
