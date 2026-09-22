@@ -35,7 +35,7 @@ in {
     };
 
     settings.archer = {
-      HostName = "archer";
+      HostName = "192.168.50.2";
       User = "sander";
       RequestTTY = "yes";
       RemoteCommand = "fish --login";

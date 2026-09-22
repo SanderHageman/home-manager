@@ -13,8 +13,7 @@
       importPath =
         path:
         import path {
-          inherit pkgs;
-          inherit config;
+          inherit pkgs config;
         };
     in
     foldl' (acc: path: acc // importPath path) { } (nixFiles ./pgms);

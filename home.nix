@@ -29,7 +29,7 @@
     bat
     btop
     seahorse
-    gcr # Provides org.gnome.keyring.SystemPrompter
+    gcr_4 # Provides org.gnome.keyring.SystemPrompter
   ];
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
