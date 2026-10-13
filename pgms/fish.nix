@@ -11,6 +11,10 @@
       set -U __done_notification_urgency_level low
     '';
 
+    interactiveShellInit = ''
+      export SUDO_EDITOR="${pkgs.vscode}/bin/code --wait"
+    '';
+
     plugins = with pkgs; [
       {
         name = "autopair";
