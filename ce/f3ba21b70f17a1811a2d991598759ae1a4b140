@@ -1,0 +1,18 @@
+dotfiles/.config/niri/cfg/layout.kdl
+  h_e44e24f80ae097 3-4
+dotfiles/.config/niri/config.kdl
+  h_e44e24f80ae097 8-11
+pgms/fish.nix
+  h_e44e24f80ae097 48-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cef3ba21b70f17a1811a2d991598759ae1a4b140",
+  "prompts": {},
+  "humans": {
+    "h_e44e24f80ae097": {
+      "author": "Sander Hageman <sander.hageman@channable.com>"
+    }
+  }
+}
