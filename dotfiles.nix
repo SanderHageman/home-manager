@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   ...
 }:
@@ -21,7 +22,7 @@
           map (x: {
             name = x;
             value = {
-              source = "${dir}/${x}";
+              source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/dotfiles/${x}";
             };
           }) (listFilesRecursive dir "")
         );
