@@ -6,3 +6,6 @@ include "./cfg/layout.kdl"
 include "./cfg/rules.kdl"
 include "./cfg/misc.kdl"
 include "./cfg/animation.kdl"
+// DMS Include Configs
+include "dms/binds.kdl"
+include "dms/outputs.kdl"

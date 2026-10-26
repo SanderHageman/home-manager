@@ -45,6 +45,10 @@
 
       remaster = "git fetch origin (__git.default_branch); and git rebase FETCH_HEAD --interactive --autosquash";
 
+      prmdp = "gh pr comment -b \"@OpsBotPrime merge and deploy to production\"";
+
+      gpr = "gh pr create --web";
+
       run-jar = ''
         set -lx JDK_JAVA_OPTIONS \
             '-Dawt.useSystemAAFontSettings=on' \
