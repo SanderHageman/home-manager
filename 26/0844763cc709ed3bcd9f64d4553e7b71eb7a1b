@@ -1,0 +1,14 @@
+dotfiles.nix
+  h_e44e24f80ae097 2,25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "260844763cc709ed3bcd9f64d4553e7b71eb7a1b",
+  "prompts": {},
+  "humans": {
+    "h_e44e24f80ae097": {
+      "author": "Sander Hageman <sander.hageman@channable.com>"
+    }
+  }
+}
